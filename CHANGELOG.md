@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.3...v1.0.4) (2025-09-11)
+
+
+### Bug Fixes
+
+* add treffen an eishalle ([c3bdac7](https://github.com/ruedigerp/party.linus.kuepper.nrw/commit/c3bdac7858b357f63db52af232f878d34547133e))
+
 ## [1.0.3](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.2...v1.0.3) (2025-09-11)
 
 
