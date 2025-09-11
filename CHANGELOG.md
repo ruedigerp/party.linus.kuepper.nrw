@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.1...v1.0.2) (2025-09-11)
+
+
+### Bug Fixes
+
+* add birthday in apiform.js ([62f448b](https://github.com/ruedigerp/party.linus.kuepper.nrw/commit/62f448ba877ae4ec300338c7779ecd8e8be25646))
+
 ## [1.0.1](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.0...v1.0.1) (2025-09-11)
 
 
