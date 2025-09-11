@@ -18,7 +18,7 @@ async function submitDynamicForm(formElement, formType) {
   removeFormMessage(formElement);
   
   try {
-      const response = await fetch(`https://api.esc-essen.de/api/form/${formType}`, {
+      const response = await fetch(`https://api.linus.kuepper.nrw/api/form/${formType}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
