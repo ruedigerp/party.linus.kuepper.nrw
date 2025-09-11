@@ -1,3 +1,10 @@
+# 1.0.0 (2025-09-11)
+
+
+### Bug Fixes
+
+* trigger first build ([acf02e5](https://github.com/ruedigerp/party.linus.kuepper.nrw/commit/acf02e5e3e34d71d88d9f73d16fe1a9792199d77))
+
 ## [1.0.25](https://github.com/ruedigerp/esc-essen/compare/v1.0.24...v1.0.25) (2025-08-14)
 
 
