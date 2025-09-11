@@ -15,6 +15,7 @@ Linus feiert seinen Geburtstag auf eine ganz besondere Art: Wir laden euch herzl
 |----------|--------------------|
 | Datum:   | 28. September      |
 | Uhrzeit: | 15:00 - 18:00 Uhr  |
+| Treffen: | 14:30 Eingang Eishalle |
 | Ort:     | Eishalle Dinslaken Am Stadtbad 1 46537 Dinslaken |
 {{% /table %}}
 
