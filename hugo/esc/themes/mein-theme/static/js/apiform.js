@@ -1,38 +1,38 @@
 // Universelle Form-Handler Funktion
-console.log("formapi loaded...");
+
 async function submitDynamicForm(formElement, formType) {
   const formData = new FormData(formElement);
   const data = {};
-  console.log("1");
+  
   // FormData zu JSON konvertieren
   for (let [key, value] of formData.entries()) {
       data[key] = value;
   }
-  console.log("2");
+
   const submitBtn = formElement.querySelector('button[type="submit"]');
   const originalText = submitBtn.textContent;
-  console.log("3");
+
   submitBtn.disabled = true;
   submitBtn.textContent = 'Wird gesendet...';
   
   // Vorherige Nachrichten entfernen
   removeFormMessage(formElement);
-  console.log("4");
+
   try {
-    console.log("5");
+    
       const response = await fetch(`https://api.linus.kuepper.nrw/api/form/${formType}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
       });
-      console.log("6");
+      
       const result = await response.json();
-      console.log("7");
+      
       if (response.ok) {
           // Erfolgsnachricht anzeigen
           console.log("seccess");
           showFormMessage(formElement, 'success', 
-              'Die Anmeldung wurde gespeichert und wird bearbeitet. Sollten Sie nach 2 Tagen keine Bestätigung erhalten, wenden Sie sich per E-Mail an uns.');
+              'Die Date wurde gespeichert und wird bearbeitet.');
           formElement.reset();
       } else {
           console.log("Unbekannter Fehler");
