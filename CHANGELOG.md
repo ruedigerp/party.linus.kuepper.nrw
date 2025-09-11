@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.2...v1.0.3) (2025-09-11)
+
+
+### Bug Fixes
+
+* remove console logs ([14f0b86](https://github.com/ruedigerp/party.linus.kuepper.nrw/commit/14f0b8671efef2b8fe0ce1c86ffb8a5c54bb0618))
+
 ## [1.0.2](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.1...v1.0.2) (2025-09-11)
 
 
