@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.0...v1.0.1) (2025-09-11)
+
+
+### Bug Fixes
+
+* api ([f6098f3](https://github.com/ruedigerp/party.linus.kuepper.nrw/commit/f6098f3cd01cf25fefe0fe5514efa43ebb386b73))
+
 # 1.0.0 (2025-09-11)
 
 
