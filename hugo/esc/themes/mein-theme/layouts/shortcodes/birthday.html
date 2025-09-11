@@ -1,0 +1,97 @@
+{{/* layouts/shortcodes/birthday.html */}}
+<div class="form-container">
+  <h2>Birthday Party</h2>
+  <form id="birthday-form">
+
+    <div class="form-row">
+        <label for="nachname">Name:</label>
+        <input type="text" id="name" name="nachname" value="" required>
+    </div>
+
+    <div class="form-row">
+        <label for="vorname">Vorname:</label>
+        <input type="text" id="vorname" name="vorname" value="" required>
+    </div>
+
+    <div class="form-row">
+        <label for="phone">Telefonnummer:</label>
+        <input type="text" id="phone" name="phone" value="" required>
+    </div>
+
+    <div class="form-row">
+        <label for="eishalle">Ich komme direkt zur Eishalle in Dinslaken:</label>
+        <select id="eishalle" name="eishalle" required>
+            <option value="">Bitte wählen...</option>
+            <option value="ja">Ja</option>
+            <option value="nein">Nein</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="erfahrung">Ich brauche Schlittschuhe:</label>
+        <select id="erfahrung" name="erfahrung" required>
+            <option value="">Bitte wählen...</option>
+            <option value="ja">Ja</option>
+            <option value="nein">Nein</option>
+        </select>
+    </div>
+
+        <div class="form-row">
+        <label for="schuhgroesse">Schuhgröße:</label>
+        <input type="text" id="schuhgroesse" name="schuhgroesse" value="">
+    </div>
+
+    <!-- Hidden IP field - wird per JavaScript befüllt -->
+    <div class="submit-row">
+        <button type="submit">Anmelden</button>
+    </div>
+  </form>
+</div>
+<script>
+  document.getElementById('birthday-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const data = {};
+      
+      for (let [key, value] of formData.entries()) {
+          data[key] = value;
+      }
+      
+      console.log('Anmeldedaten:', data);
+    //   alert('Anmeldung erfolgreich übermittelt! (Siehe Konsole für Details)');
+  });
+  // Hidden Field zum Formular hinzufügen
+  function addClientIPField() {
+      // IP von externem Service holen
+      fetch('https://api.ipify.org?format=json')
+          .then(response => response.json())
+          .then(data => {
+              // Hidden field erstellen oder updaten
+              let ipField = document.getElementById('ip') || 
+                          document.createElement('input');
+              ipField.type = 'hidden';
+              ipField.name = 'ip';
+              ipField.id = 'ip';
+              ipField.value = data.ip;
+              
+              // Zum Formular hinzufügen falls noch nicht vorhanden
+              if (!document.getElementById('ip')) {
+                  document.querySelector('form').appendChild(ipField);
+              }
+          })
+          .catch(err => {
+              console.log('IP detection failed:', err);
+              // Fallback: leeres Feld
+              let ipField = document.createElement('input');
+              ipField.type = 'hidden';
+              ipField.name = 'ip';
+              ipField.value = 'unknown';
+              document.querySelector('form').appendChild(ipField);
+          });
+  }
+
+  // Beim Laden der Seite ausführen
+  document.addEventListener('DOMContentLoaded', addClientIPField);
+
+</script>

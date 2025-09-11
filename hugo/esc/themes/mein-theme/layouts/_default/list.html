@@ -1,0 +1,34 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<section class="list-page">
+    <header class="page-header">
+        <h1 class="page-title">{{ .Title }}</h1>
+        {{ with .Content }}
+        <div class="page-description">
+            {{ . }}
+        </div>
+        {{ end }}
+    </header>
+    
+    <div class="post-list">
+        {{ range .Paginator.Pages }}
+        <article class="post-preview">
+            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            <time class="post-date">{{ .Date.Format "02. Januar 2006" }}</time>
+            {{ if .Params.tags }}
+            <div class="post-tags">
+                {{ range .Params.tags }}
+                <span class="tag">#{{ . }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
+            <p>{{ .Summary }}</p>
+            <a href="{{ .Permalink }}" class="read-more">Weiterlesen →</a>
+        </article>
+        {{ end }}
+    </div>
+    
+    {{ template "_internal/pagination.html" . }}
+</section>
+{{ end }}

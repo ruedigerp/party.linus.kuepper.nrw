@@ -1,0 +1,55 @@
+{{ $id := .Get "id" | default (printf "multimap-%d" .Ordinal) }}
+{{ $height := .Get "height" | default "500px" }}
+{{ $zoom := .Get "zoom" | default "13" }}
+
+<div id="{{ $id }}" style="height: {{ $height }}; margin: 2rem 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);"></div>
+
+{{ if not (.Page.Scratch.Get "leafletLoaded") }}
+  {{ .Page.Scratch.Set "leafletLoaded" true }}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{{ end }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var locations = [];
+  {{ range $i, $line := split .Inner "\n" }}
+    {{ if $line }}
+      {{ $parts := split $line "|" }}
+      {{ if ge (len $parts) 3 }}
+        locations.push({
+          lat: {{ index $parts 0 }},
+          lon: {{ index $parts 1 }},
+          title: "{{ index $parts 2 }}",
+          {{ if ge (len $parts) 4 }}popup: "{{ index $parts 3 }}"{{ end }}
+        });
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  
+  if (locations.length > 0) {
+    var map = L.map('{{ $id }}').setView([locations[0].lat, locations[0].lon], {{ $zoom }});
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(map);
+    
+    var markers = [];
+    locations.forEach(function(loc) {
+      var marker = L.marker([loc.lat, loc.lon]).addTo(map);
+      if (loc.popup) {
+        marker.bindPopup("<b>" + loc.title + "</b><br>" + loc.popup);
+      } else {
+        marker.bindPopup("<b>" + loc.title + "</b>");
+      }
+      markers.push(marker);
+    });
+    
+    if (markers.length > 1) {
+      var group = new L.featureGroup(markers);
+      map.fitBounds(group.getBounds().pad(0.1));
+    }
+  }
+});
+</script>

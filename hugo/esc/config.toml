@@ -1,0 +1,48 @@
+baseURL = "https://party.linus.kuepper.nrw/"
+languageCode = "de-de"
+title = "Linus 9. Geburtstag"
+theme = "mein-theme"
+# paginate = 5
+[pagination]
+pagerSize = 10
+
+[params]
+  author = "Max Mustermann"
+  description = "Eagles Essen West"
+  email = "kontakt@example.com"
+  github = "https://github.com/username"
+  twitter = "https://twitter.com/username"
+  customCSS = ["css/markdown.css"]
+  # homepage = "/verein/willkommen"
+
+[params.s3]
+    domain = "s3.kuepper.nrw"
+    bucket = "esc"
+    protocol = "https"
+    # Optional komplette baseurl überschreibt domain/bucket
+    baseurl =  "https://esc.s3.kuepper.nrw"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+  
+  [[menu.main]]
+    name = "Projekte"
+    url = "/projekte/"
+    weight = 3
+  
+  [[menu.main]]
+    name = "Über mich"
+    url = "/about/"
+    weight = 4
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"

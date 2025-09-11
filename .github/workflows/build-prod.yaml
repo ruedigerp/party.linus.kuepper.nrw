@@ -1,0 +1,85 @@
+name: (prod) Build, Package, Release
+'on':
+  # release:
+  #   types:
+  #     - created
+  push:
+    branches:
+      - main
+env:
+  VERSION: null
+jobs:
+
+  build-image-prod:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: hugo/esc
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+  
+      - name: run hugo
+        run: |
+          ls -la 
+          git remote -v 
+          pwd
+          ls -la content
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: get semversion
+        run: |
+          VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - id: containerRegistryLogin
+        name: Login to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ruedigerp
+          password: ${{ secrets.GH_PACKAGE }}
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+
+      - name: run hugo
+        run: |
+          wget -O hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v0.148.1/hugo_0.148.1_linux-amd64.tar.gz
+          tar xzf hugo.tar.gz
+          pwd
+          ls
+          cat config.toml
+          ./hugo 
+          ls
+
+      - name: Build and push multi-arch image
+        uses: docker/build-push-action@v5
+        with:
+          context: . 
+          file: Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/ruedigerp/party.linus.kuepper.nrw:${{ env.VERSION }}
+            ghcr.io/ruedigerp/party.linus.kuepper.nrw:latest
+          build-args: |
+            VERSION=${{ env.VERSION }}
+        
+

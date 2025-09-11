@@ -1,0 +1,14 @@
+{{/* layouts/shortcodes/img.html */}}
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" | default "" }}
+{{ $class := .Get "class" | default "" }}
+{{ $width := .Get "width" | default "" }}
+{{ $height := .Get "height" | default "" }}
+
+<img 
+  src="/uploads/{{ $src }}" 
+  alt="{{ $alt }}"
+  {{ with $class }}class="{{ . }}"{{ end }}
+  {{ with $width }}width="{{ . }}"{{ end }}
+  {{ with $height }}height="{{ . }}"{{ end }}
+>

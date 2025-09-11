@@ -1,0 +1,53 @@
+{{- $bucket := .Get "bucket" | default (.Site.Params.s3.bucket | default "esc") -}}
+{{- $path := .Get "path" -}}
+{{- $images := .Get "images" -}}
+{{- $columns := .Get "columns" | default "3" -}}
+{{- $s3domain := .Get "s3domain" | default (.Site.Params.s3.domain | default "s3.kuepper.nrw") -}}
+{{- $baseurl := .Get "baseurl" | default .Site.Params.s3.baseurl -}}
+{{- $protocol := .Get "protocol" | default (.Site.Params.s3.protocol | default "https") -}}
+
+{{- if or $path $images -}}
+<div class="s3-gallery" style="display: grid; grid-template-columns: repeat({{ $columns }}, 1fr); gap: 1rem; margin: 1rem 0;">
+  {{- if $images -}}
+    {{- $imageList := split $images "," -}}
+    {{- range $imageList -}}
+      {{- $imagePath := . | strings.TrimSpace -}}
+      <div class="gallery-item">
+        {{- if $baseurl -}}
+        <img src="{{ $baseurl }}/{{ $imagePath }}" 
+             alt="Gallery Image" 
+             style="width: 100%; height: auto; border-radius: 8px; cursor: pointer;"
+             onclick="openModal('{{ $baseurl }}/{{ $imagePath }}')">
+        {{- else -}}
+        <img src="{{ $protocol }}://{{ $bucket }}.{{ $s3domain }}/{{ $imagePath }}" 
+             alt="Gallery Image" 
+             style="width: 100%; height: auto; border-radius: 8px; cursor: pointer;"
+             onclick="openModal('{{ $protocol }}://{{ $bucket }}.{{ $s3domain }}/{{ $imagePath }}')">
+        {{- end -}}
+      </div>
+    {{- end -}}
+  {{- else if $path -}}
+    <!-- Automatische Galerie für alle Bilder in einem Pfad (erfordert Liste) -->
+    <p><em>Automatische Pfad-Galerie erfordert eine Liste von Bildern im "images" Parameter</em></p>
+  {{- end -}}
+</div>
+
+<!-- Modal für Vollbildansicht -->
+<div id="imageModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); cursor: pointer;" onclick="closeModal()">
+  <img id="modalImage" style="margin: auto; display: block; max-width: 90%; max-height: 90%; margin-top: 5%;">
+  <span style="position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;" onclick="closeModal()">&times;</span>
+</div>
+
+<script>
+function openModal(src) {
+  document.getElementById('imageModal').style.display = 'block';
+  document.getElementById('modalImage').src = src;
+}
+
+function closeModal() {
+  document.getElementById('imageModal').style.display = 'none';
+}
+</script>
+{{- else -}}
+<p><strong>Fehler:</strong> Pfad oder Bilder-Liste für S3-Galerie nicht angegeben</p>
+{{- end -}}

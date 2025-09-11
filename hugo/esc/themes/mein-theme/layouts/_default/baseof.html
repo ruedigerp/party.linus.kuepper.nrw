@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    {{ partial "meta.html" . }}
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    <link rel="stylesheet" href="{{ "css/theme.css" | relURL }}">
+    <!-- <link rel="stylesheet" href="{{ "css/style.css" | relURL }}"> -->
+    {{ block "head" . }}{{ end }}
+
+    {{ range .Site.Params.customCSS }}
+    <link rel="stylesheet" href="{{ . | relURL }}">
+    {{ end }}
+</head>
+<body>
+    <div class="container">
+        {{ partial "header.html" . }}
+        
+        <main class="content">
+            {{ block "main" . }}{{ end }}
+        </main>
+        <!-- Footer -->
+        {{ partial "footer.html" . }}
+        <!-- Footer END -->
+    </div>
+    <!-- <script src="{{ "js/main.js" | relURL }}"></script> -->
+    <script src="{{ "js/burger-menu.js" | relURL }}"></script>
+    <script src="{{ "js/apiform.js" | relURL }}"></script>
+</body>
+</html>

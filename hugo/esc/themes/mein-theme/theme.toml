@@ -1,0 +1,14 @@
+name = "Mein Theme"
+license = "MIT"
+licenselink = "https://github.com/username/mein-theme/blob/master/LICENSE"
+description = "Ein sauberes und modernes Hugo Theme"
+homepage = "https://github.com/username/mein-theme"
+tags = ["minimal", "clean", "blog", "responsive"]
+features = ["blog", "portfolio"]
+min_version = "0.80.0"
+
+[author]
+  name = "Max Mustermann"
+  homepage = "https://example.com"
+
+  

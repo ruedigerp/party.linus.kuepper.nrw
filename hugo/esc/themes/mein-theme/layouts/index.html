@@ -1,0 +1,9 @@
+{{ define "main" }}
+  <!-- Ihre Homepage-Inhalte -->
+  <!-- <h1>Linus Geburtstagsparty am 28.09.2025</h1> -->
+  
+  <!-- Oder Inhalt von einer anderen Seite einbinden -->
+  {{ with .Site.GetPage "/verein/startseite" }}
+    {{ .Content }}
+  {{ end }}
+{{ end }}

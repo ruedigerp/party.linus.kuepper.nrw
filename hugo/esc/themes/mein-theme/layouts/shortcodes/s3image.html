@@ -1,0 +1,27 @@
+<!-- Shortcode für einzelnes Bild: layouts/shortcodes/s3image.html -->
+{{- $bucket := .Get "bucket" | default (.Site.Params.s3.bucket | default "esc") -}}
+{{- $path := .Get "path" -}}
+{{- $alt := .Get "alt" | default "S3 Image" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $width := .Get "width" | default "" -}}
+{{- $height := .Get "height" | default "" -}}
+{{- $s3domain := .Get "s3domain" | default (.Site.Params.s3.domain | default "s3.kuepper.nrw") -}}
+{{- $baseurl := .Get "baseurl" | default .Site.Params.s3.baseurl -}}
+{{- $protocol := .Get "protocol" | default (.Site.Params.s3.protocol | default "https") -}}
+
+{{- $baseURL := "" -}}
+{{- if $baseurl -}}
+  {{- $baseURL = $baseurl -}}
+{{- else -}}
+  {{- $baseURL = printf "%s://%s.%s" $protocol $bucket $s3domain -}}
+{{- end -}}
+
+{{- if $path -}}
+<img src="{{ $baseURL }}/{{ $path }}" 
+     alt="{{ $alt }}"
+     {{- if $class }} class="{{ $class }}"{{ end }}
+     {{- if $width }} width="{{ $width }}"{{ end }}
+     {{- if $height }} height="{{ $height }}"{{ end }}>
+{{- else -}}
+<p><strong>Fehler:</strong> Pfad für S3-Bild nicht angegeben</p>
+{{- end -}}

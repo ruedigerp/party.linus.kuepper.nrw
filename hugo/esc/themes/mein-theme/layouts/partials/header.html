@@ -1,0 +1,28 @@
+<!-- <header class="site-header">
+    <div class="header-content">
+        <h1 class="site-title">
+            <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        </h1>
+        <p class="site-description">{{ .Site.Params.description }}</p>
+    </div>
+    {{ partial "nav.html" . }}
+</header> -->
+    <header class="top-header">
+        <div class="top-header-content">
+            <div class="logo-title">
+                <div class="logo"><a href="/"><img src="/uploads/logo.png"></a></div>
+                <h1 class="site-title">{{ .Site.Title }}</h1>
+            </div>
+            <div class="social-links">
+                <!-- 
+                <a href="https://www.facebook.com/YoungMoskitosEssen/" title="Facebook">F</a>
+                <a href="info@esc-essen.de" title="Mail">M</a>
+                <a href="https://www.instagram.com/young_moskitos_essen/" title="Instagram">I</a>
+                <a href="http://youtube.moskitos-essen.de/" title="Youtube">Y</a> 
+                -->
+            </div>
+        </div>
+    </header>
+
+
+    {{ partial "nav.html" . }}
