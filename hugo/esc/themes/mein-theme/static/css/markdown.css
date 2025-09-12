@@ -352,7 +352,7 @@ input[type="checkbox"][disabled] {
 @media (prefers-color-scheme: dark) {
   body {
     background: #1a1a1a;
-    color: #e0e0e0;
+    color: #fefefe;
   }
   
   main, .main, article, .content {
@@ -360,7 +360,7 @@ input[type="checkbox"][disabled] {
   }
   
   h1, h2, h3, h4 {
-    color: #f0f0f0;
+    color: #454545;
   }
   
   blockquote {
