@@ -7,9 +7,9 @@ theme = "mein-theme"
 pagerSize = 10
 
 [params]
-  author = "Max Mustermann"
-  description = "Eagles Essen West"
-  email = "kontakt@example.com"
+  author = "Linus"
+  description = "Linus Mathis Küpper"
+  email = "linus.mathis@kuepper.nrw"
   github = "https://github.com/username"
   twitter = "https://twitter.com/username"
   customCSS = ["css/markdown.css"]

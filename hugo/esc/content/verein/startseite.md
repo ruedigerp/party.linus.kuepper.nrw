@@ -4,7 +4,7 @@ title: "Willkommen"
 #   - /
 ---
 
-# Linus' Geburtstagsfeier am 28.09. - Eislaufen in Dinslaken
+# Linus Geburtstagsfeier am 28.09. - Eislaufen in Dinslaken
 
 Ich feier meinen Geburtstag und lade euch herzlich zum Eislaufen in die Eishalle Dinslaken ein!
 
