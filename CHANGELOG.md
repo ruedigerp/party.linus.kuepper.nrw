@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.5...v1.0.6) (2025-09-12)
+
+
+### Bug Fixes
+
+* change description ([c5c8458](https://github.com/ruedigerp/party.linus.kuepper.nrw/commit/c5c845851c88fc47549cb13c2d9ea1e35e07c17c))
+
 ## [1.0.5](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.4...v1.0.5) (2025-09-12)
 
 
