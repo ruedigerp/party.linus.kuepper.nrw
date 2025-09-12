@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.4...v1.0.5) (2025-09-12)
+
+
+### Bug Fixes
+
+* anpassungen ([e0a325c](https://github.com/ruedigerp/party.linus.kuepper.nrw/commit/e0a325c3ae0c45f66448a38c6566af3b223bce04))
+
 ## [1.0.4](https://github.com/ruedigerp/party.linus.kuepper.nrw/compare/v1.0.3...v1.0.4) (2025-09-11)
 
 
