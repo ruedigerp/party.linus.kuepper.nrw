@@ -20,7 +20,7 @@ jobs:
       packages: write
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_TOKEN }}
@@ -32,7 +32,7 @@ jobs:
           pwd
           ls -la content
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           
@@ -70,7 +70,7 @@ jobs:
           ls
 
       - name: Build and push multi-arch image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: . 
           file: Dockerfile
